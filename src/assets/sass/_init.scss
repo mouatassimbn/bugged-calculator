@@ -1,0 +1,9 @@
+// Bootstrap mixins
+@import "~bootstrap/scss/_mixins.scss";
+
+// Global variables
+@import "./components/variables";
+
+// Basics
+@import "./base/fonts";
+@import "./base/global";
