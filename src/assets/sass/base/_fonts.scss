@@ -3,5 +3,6 @@
 
 // Set poppins as the global font family
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: map-get($map: $font-weights, $key: "regular") !important;
 }
