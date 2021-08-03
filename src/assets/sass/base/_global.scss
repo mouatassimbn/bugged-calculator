@@ -1,22 +1,33 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    height: 100vh;
-    width: 100%;
+  height: 100vh;
+  width: 100%;
 
-    #root {
-        width: 100%;
-        height: 100%;
-    }
+  #root {
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.is-operation{
-    color: #FDCA40;
+.is-operation {
+  color: #fdca40;
+}
+
+.light-mode {
+  background-color: #ffffff;
+  color: #22252d;
+}
+
+.dark-mode {
+  background-color: #22252d;
+  color: #ffffff;
 }
