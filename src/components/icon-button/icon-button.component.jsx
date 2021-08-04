@@ -1,9 +1,9 @@
 import Icon from "../../utils/icons";
 
-const IconButton = ({ type }) => {
+const IconButton = ({ type, isOperation }) => {
   return (
     <div className="iconButton-wrapper">
-      <div className="iconButton-body">{Icon(type)}</div>
+      <div className={`iconButton-body ${(isOperation)? "is-operation": ""}`}>{Icon(type)}</div>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import {
   faDivide,
   faPercentage,
   faEquals,
+  faBackspace,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Icon = (icon) => {
@@ -37,6 +38,9 @@ const Icon = (icon) => {
       break;
     case "equals":
       resultIcon = faEquals;
+      break;
+    case "backspace":
+      resultIcon = faBackspace;
       break;
   }
 
