@@ -1,0 +1,62 @@
+.modeToggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+
+  .modeToggle-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .mode-button {
+      width: 60px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:active {
+        opacity: 0.7;
+      }
+    }
+
+    .left-button {
+      border-end-start-radius: 50px;
+      border-start-start-radius: 50px;
+    }
+
+    .right-button {
+      border-start-end-radius: 50px;
+      border-end-end-radius: 50px;
+    }
+  }
+}
+
+.light-mode {
+  .modeToggle-wrapper {
+    .mode-button {
+      background-color: #ffffff;
+      color: #22252d;
+
+      &:hover {
+        background-color: #22252d;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.dark-mode {
+  .modeToggle-wrapper {
+    .mode-button {
+      background-color: #22252d;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #ffffff;
+        color: #22252d;
+      }
+    }
+  }
+}

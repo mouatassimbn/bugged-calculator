@@ -40,7 +40,7 @@ const Icon = (icon) => {
       break;
   }
 
-  return <FontAwesomeIcon icon={resultIcon} />;
+  return <FontAwesomeIcon className="icon" icon={resultIcon} />;
 };
 
 export default Icon;
