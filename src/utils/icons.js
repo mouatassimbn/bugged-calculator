@@ -40,6 +40,7 @@ const Icon = (icon) => {
       resultIcon = faEquals;
       break;
     case "backspace":
+    default:
       resultIcon = faBackspace;
       break;
   }
