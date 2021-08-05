@@ -8,8 +8,32 @@
   .app-body {
     width: 100%;
     height: 100%;
+    padding: 1.5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .app-header {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .app-screen {
+      width: 100%;
+      height: 50%;
+      padding: 1rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      font-size: 3rem;
+    }
+
+    .app-content {
+      width: 100%;
+      height: 100%;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
   }
 }
