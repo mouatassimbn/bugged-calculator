@@ -1,9 +1,14 @@
 import Icon from "../../utils/icons";
 
-const IconButton = ({ type, classes = "", isOperation }) => {
+const IconButton = ({ type, classes = "", isOperation, clickHandler }) => {
   return (
-    <div className={`iconButton-wrapper btn ${classes}`}>
-      <div className={`iconButton-body ${isOperation ? "is-operation bold" : ""}`}>
+    <div
+      className={`iconButton-wrapper btn ${classes}`}
+      onClick={() => clickHandler(type)}
+    >
+      <div
+        className={`iconButton-body ${isOperation ? "is-operation bold" : ""}`}
+      >
         {Icon(type)}
       </div>
     </div>
