@@ -63,7 +63,7 @@ class App extends Component {
         this.setState((state) => ({
           currentNumber: state.currentNumber.includes("-")
             ? state.currentNumber.substring(1, state.currentNumber.length)
-            : `- ${state.currentNumber}`,
+            : `-${state.currentNumber}`,
         }));
         break;
       case "plus":
@@ -72,20 +72,42 @@ class App extends Component {
           currentNumber: "0",
         }));
         break;
+      case "minus":
+        this.setState((state) => ({
+          history: `${(state.history += state.currentNumber)}-`,
+          currentNumber: "0",
+        }));
+        break;
+      case "divide":
+        this.setState((state) => ({
+          history: `${(state.history += state.currentNumber)}/`,
+          currentNumber: "0",
+        }));
+        break;
+      case "times":
+        this.setState((state) => ({
+          history: `${(state.history += state.currentNumber)}x`,
+          currentNumber: "0",
+        }));
+        break;
       case "equals":
         this.setState(
           (state) => ({
             history: `${(state.history += state.currentNumber)}`,
+            currentNumber: "",
           }),
           () => this.calculate()
         );
+        break;
+      default:
+        // do ntg
         break;
     }
   };
 
   calculate = () => {
     const equation = this.state.history
-      .split(/(\d+)/)
+      .split(/(-*\d+)/)
       .filter((itm) => itm)
       .map((item) => (isNaN(item) ? item : parseInt(item, 10)));
 
@@ -103,6 +125,9 @@ class App extends Component {
           case "*":
           case "x":
             result *= arr[idx + 1];
+            break;
+          default:
+            // do ntg
             break;
         }
       }
