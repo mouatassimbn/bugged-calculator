@@ -9,8 +9,8 @@ class App extends Component {
 
     this.state = {
       isDarkMode: true,
-      operation: "",
-      currentNumber: "12,936",
+      history: "",
+      currentNumber: "0",
     };
   }
 
@@ -32,19 +32,32 @@ class App extends Component {
       case "8":
       case "9":
         this.setState((state) => ({
-          currentNumber: state.currentNumber + content,
+          currentNumber:
+            state.currentNumber === "0"
+              ? content
+              : state.currentNumber + content,
         }));
         break;
       case "AC":
-        this.setState({ currentNumber: "" });
+        this.setState({ currentNumber: "0", history: "" });
         break;
       case "backspace":
-        this.setState((state) => ({
-          currentNumber: state.currentNumber.substring(
-            0,
-            state.currentNumber.length - 1
-          ),
-        }));
+        this.setState(
+          (state) => ({
+            currentNumber:
+              state.currentNumber !== "0"
+                ? state.currentNumber.substring(
+                    0,
+                    state.currentNumber.length - 1
+                  )
+                : "0",
+          }),
+          () => {
+            if (!this.state.currentNumber) {
+              this.setState({ currentNumber: "0" });
+            }
+          }
+        );
         break;
       case "±":
         this.setState((state) => ({
@@ -53,7 +66,49 @@ class App extends Component {
             : `- ${state.currentNumber}`,
         }));
         break;
+      case "plus":
+        this.setState((state) => ({
+          history: `${(state.history += state.currentNumber)}+`,
+          currentNumber: "0",
+        }));
+        break;
+      case "equals":
+        this.setState(
+          (state) => ({
+            history: `${(state.history += state.currentNumber)}`,
+          }),
+          () => this.calculate()
+        );
+        break;
     }
+  };
+
+  calculate = () => {
+    const equation = this.state.history
+      .split(/(\d+)/)
+      .filter((itm) => itm)
+      .map((item) => (isNaN(item) ? item : parseInt(item, 10)));
+
+    let result = equation.shift();
+    equation.forEach((itm, idx, arr) => {
+      if (isNaN(itm)) {
+        switch (itm) {
+          case "+":
+            result += arr[idx + 1];
+            break;
+          case "-":
+            result -= arr[idx + 1];
+          case "/":
+            result /= arr[idx + 1];
+          case "*":
+          case "x":
+            result *= arr[idx + 1];
+            break;
+        }
+      }
+    });
+
+    this.setState({ currentNumber: result });
   };
 
   render() {
@@ -72,7 +127,10 @@ class App extends Component {
             />
           </div>
           <div className="app-screen bold">
-            <Output currentNumber={this.state.currentNumber} />
+            <Output
+              currentNumber={this.state.currentNumber}
+              history={this.state.history}
+            />
           </div>
           <div className="app-content">
             <ButtonsGrid handleClick={this.buttonClick} />
