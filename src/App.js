@@ -90,14 +90,16 @@ class App extends Component {
           currentNumber: "0",
         }));
         break;
+      case "percentage":
+        this.setState((state) => ({
+          currentNumber: (parseInt(state.currentNumber, 10) / 100).toString(),
+        }));
+        break;
       case "equals":
-        this.setState(
-          (state) => ({
-            history: `${(state.history += state.currentNumber)}`,
-            currentNumber: "",
-          }),
-          () => this.calculate()
-        );
+        this.setState((state) => ({
+          history: `${(state.history += state.currentNumber)}`,
+          currentNumber: this.calculate(),
+        }));
         break;
       default:
         // do ntg
@@ -107,9 +109,9 @@ class App extends Component {
 
   calculate = () => {
     const equation = this.state.history
-      .split(/(-*\d+)/)
+      .split(/(-{0,1}(\d+(\.\d+)*))/)
       .filter((itm) => itm)
-      .map((item) => (isNaN(item) ? item : parseInt(item, 10)));
+      .map((item) => (isNaN(item) ? item : parseFloat(item, 10)));
 
     let result = equation.shift();
     equation.forEach((itm, idx, arr) => {
@@ -133,7 +135,7 @@ class App extends Component {
       }
     });
 
-    this.setState({ currentNumber: result });
+    return result;
   };
 
   render() {
